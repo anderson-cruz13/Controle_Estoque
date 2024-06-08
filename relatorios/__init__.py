@@ -112,6 +112,7 @@ def relatorios_container(page):
                                 height=500,
                                 expand=True,
                                 content=ft.Column(
+                                    spacing=5,
                                     scroll=ft.ScrollMode.AUTO,
                                     wrap=True,
                                     controls=''))],
