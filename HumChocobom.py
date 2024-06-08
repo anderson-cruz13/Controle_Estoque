@@ -31,6 +31,13 @@ def main(page: ft.Page):
     page.window_title_bar_buttons_hidden = True
     page.title = "Aplicativo de gestão"
 
+    def verify_page_size():
+        if page.window_width > 550:
+            end.visible = True
+        else:
+            end.visible = False
+        page.update()
+
     def change(e):
         button = e.control.text
         if button == "Compras":
@@ -112,12 +119,25 @@ def main(page: ft.Page):
                color=ft.colors.WHITE,
                weight=ft.FontWeight.BOLD,
                text_align=ft.alignment.center
-           )
+           ),
         ],
         alignment=ft.MainAxisAlignment.CENTER
     ),
     expand=True,
 )
+    
+    end = ft.Container(
+        content=ft.Row(
+            controls=[
+                ft.Text(value="Desenvolvido por Anderson G. Pereira Cruz \nEmail: andersong.pereiracruz@gmail.com", size=10, weight=ft.FontWeight.BOLD, color=ft.colors.BLACK),
+                ft.Text(value=" Insta: biel.ands \n GitHub: anderson-cruz13 \n Replit: gabrielcruz133", size=8, weight=ft.FontWeight.BOLD, color=ft.colors.BLACK,)
+            ],
+            alignment=ft.MainAxisAlignment.SPACE_AROUND
+        ), 
+        bgcolor=ft.colors.WHITE60,
+        height=50,
+        visible=False,
+    )
 
     layout = ft.Column(
         spacing=0,
@@ -125,10 +145,14 @@ def main(page: ft.Page):
             top,
             navigation,
             frame,
+            end,
         ],
         expand=True,
     )
     page.add(layout)
+    verify_page_size()
+
+    page.on_resize = lambda e: verify_page_size()
     
 if __name__ == "__main__":
     ft.app(target=main)
