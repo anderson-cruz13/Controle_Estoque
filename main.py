@@ -29,6 +29,7 @@ def main(page: ft.Page):
     page.window_resizable = False
     page.window_full_screen = False
     page.window_title_bar_buttons_hidden = True
+    page.title = "Aplicativo de gestão"
 
     def change(e):
         button = e.control.text
