@@ -2,7 +2,8 @@
 
 Este projeto é uma aplicação de gestão de estoque desenvolvida utilizando o Flet, uma biblioteca Python que facilita a criação de interfaces gráficas de usuário (GUIs) modernas e interativas. A aplicação é dividida em quatro seções principais:
 
-> Esse app possui uma interface gráfica, apesar de se ser responsive em demais plataformas, seu uso ainda está apenas em desktop.
+> Esse app possui uma interface gráfica que, apesar de se ser responsive em demais plataformas, seu uso ainda está apenas em desktop.
+> O app está na pasta dist
 
 ---
 
