@@ -5,11 +5,25 @@ from time import sleep
 from data import *
 
 def vendas_container(page):
+    """Função para gerar o content no frame
+
+    Args:
+        page (function): function vinda de main para redenrização
+
+    Returns:
+        parâmetro: Retorna o content do vendas
+    """
+    # var globais que vem do content princpal
     global alfa_TextField, int_TextField, txt_salvos, txt_erros, almoxarifado, float_TextField
 
     def vender_produto(e=None):
-        nome = alfa_TextField.value
-        if nome not in almoxarifado or nome == 'Nome' or not nome:
+        """Função que recebe os parâmetros do botões
+
+        Args:
+            e (event, optional): Defaults to None.
+        """
+        nome = alfa_TextField.value # Definição do nome
+        if nome not in almoxarifado or nome == 'Nome' or not nome: # Existência do nome
             txt_erros.visible = True
             page.update()
             sleep(1)
@@ -17,15 +31,15 @@ def vendas_container(page):
             page.update()
             return 
 
-        quantidade = int_TextField.value
-        quantidade_real = int(quantidade)
-        if not quantidade or quantidade_real == 0 or almoxarifado[nome] < 0:
+        quantidade = int_TextField.value # Definição de quantidade
+        quantidade_real = int(quantidade) # quantidade(str) -> int
+        if not quantidade or quantidade_real == 0 or almoxarifado[nome] < 0: # Existência de quantidade
             txt_erros.visible = True
             page.update()
             return
         
-        preco = float_TextField.value
-        preco_real = verificar(preco)
+        preco = float_TextField.value # Definição de preço
+        preco_real = verificar(preco) # Verificação de "," e retornar um float
         if not float_TextField or preco_real == 0:
             txt_erros.visible = True
             page.update()
@@ -74,6 +88,13 @@ def vendas_container(page):
     return content
 
 def processamento_vendas(nome, quantidade, preco):
+    """Função para lançar no relatório
+
+    Args:
+        nome (str): Nome do produto 
+        quantidade (int): Quantidade do produto
+        preco (float): Preço do produto
+    """
     id_venda = 1 if len(vendas) == 0 else len(vendas) + 1
     venda_unidade = [
         nome,

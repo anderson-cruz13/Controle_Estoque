@@ -3,17 +3,28 @@ from data import vendas, compras
 
 
 def interar_elementos_vendas():
+    """Funções para pegar os elementos de vendas
+
+    Returns:
+        list: Lista de elementos existente em vendas
+    """
     elementos = []
     for data, detalhes in vendas.items():
         for informacoes, lista in detalhes.items():
-            id_pedido = informacoes
-            nome = lista[0]
-            quantidade = lista[1]
-            preco = lista[2]
+            id_pedido = informacoes # Número do pedio
+            nome = lista[0] # Nome
+            quantidade = lista[1] # Quantidade
+            preco = lista[2] # Preço (não é preço por unidade, mas sim da venda)
             elementos.append(f"Data: {data} \n ID: {id_pedido} \n Nome: {nome} \n Quantidade: {quantidade} \n Preço: {preco}")
     return elementos
 
+# Mesmo procedimento acima, no entando intera sobre um dict()
 def interar_elementos_compras():
+    """Função para pegar os elementos das compras
+
+    Returns:
+        list: lista elementos existente em compras
+    """
     elementos = []
     for data, infor in compras.items():
         for i in infor:
@@ -25,8 +36,22 @@ def interar_elementos_compras():
     return elementos
 
 def relatorios_container(page):
+    """Função que retorna o content para o frame
+
+    Args:
+        page (function): function vinda de main para redenrização
+    """
     
     def interar_data(data, arquivo):
+        """Função para buscar data em arquivo
+
+        Args:
+            data (str): text do TextField digitado pelo usuário
+            arquivo (var composta): Poderá ser list ou dict | (vendas ou compras)
+
+        Returns:
+            list: elementos interados
+        """
         elementos = []
         if arquivo == "Vendas":
             detalhes = vendas.get(data, {})
@@ -46,6 +71,11 @@ def relatorios_container(page):
         return elementos
 
     def buscar(e):
+        """Função que recebe um evento
+
+        Args:
+            e (str): Recebe um evento de TextField
+        """
         data = e.control.value
         relatorio = tittle.value
 
@@ -56,6 +86,11 @@ def relatorios_container(page):
           
 
     def change(e):
+        """Função que muda o contt e tittle do conteudo de relatório
+
+        Args:
+            e (event): Recebe o value vindo do disprado on_click do TextButton em MenuBar
+        """
         if e.control.text == 'Vendas':
             contt.content.controls = vendas_text_controls
             tittle.value = 'Vendas'
@@ -66,9 +101,11 @@ def relatorios_container(page):
         tittle.update()
         contt.update()
 
-    vendas_elementos = interar_elementos_vendas()
+    vendas_elementos = interar_elementos_vendas() # Buscar elementos em vendas
+    # Interar elementos em contt.controls
     vendas_text_controls = [ft.Text(value=elemento, color=ft.colors.BLACK) for elemento in vendas_elementos]
-    compras_elementos = interar_elementos_compras()
+    compras_elementos = interar_elementos_compras() # Buscar elementos em compras
+    # Interar elementos em contt.controls
     compras_text_controls = [ft.Text(value=elemento, color=ft.colors.BLACK) for elemento in compras_elementos]
 
     content = ft.ResponsiveRow(

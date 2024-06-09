@@ -5,8 +5,17 @@ from data import *
 
 
 def compras_content(page):
-    global alfa_TextField, int_TextField, float_TextField, txt_erros, txt_salvos
+    """Função para gerar o content no frame
+
+    Args:
+        page (function): function vinda de main para redenrização
+
+    Returns:
+        parâmetro: Retorna o content de compras
+    """
+    global alfa_TextField, int_TextField, float_TextField, txt_erros, txt_salvos # Definição de var globais
     
+    # Mesmo funcionamento de vendas
     def cadastrar_produto(e=None):
         global alfa_TextField, int_TextField, float_TextField, txt_erros, txt_salvos
         nome = alfa_TextField.value

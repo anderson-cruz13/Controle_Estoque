@@ -3,11 +3,25 @@ from data import *
 from time import sleep
 
 def almoxarifado_content(page):
+    """Função para gerar o content no frame
+
+    Args:
+        page (function): function vinda de main para redenrização
+
+    Returns:
+        parâmetro: Retorna o content do inventário
+    """
+    # Textos de aviso para buscas no inventario
     encontrado = ft.Text(value="Item encontrado", color=ft.colors.BLACK, bgcolor=ft.colors.GREEN, weight=ft.FontWeight.BOLD, visible=False, text_align=ft.TextAlign.CENTER)
     nao_encontrado = ft.Text(value="Item não encontrado", color=ft.colors.BLACK, bgcolor=ft.colors.RED, weight=ft.FontWeight.BOLD, visible=False, text_align=ft.TextAlign.CENTER)
 
     def buscar_almoxarifado(e=None):
-        nome = e.control.value
+        """Função para buscar no almoxarifado
+
+        Args:
+            e (event, optional): Recebe o text disparado pelo on_submit do TextField
+        """
+        nome = e.control.value # Definição do nome escrtrio TextField
         if nome:
             if nome in almoxarifado:
                 exibir.content.controls = [ft.Text(value=f"{nome}: {almoxarifado[nome]} un.", size=15, color=ft.colors.BLACK)]
@@ -24,13 +38,14 @@ def almoxarifado_content(page):
 
         encontrado.update()
         nao_encontrado.update()
-        sleep(1)
+        sleep(1) # Temporarizado para a renderização sumir
         encontrado.visible = False
         nao_encontrado.visible = False
         encontrado.update()
         nao_encontrado.update()
         exibir.update()
 
+    # Content do almoxarifado
     content = ft.Container(
         content=ft.Column(
             controls=[ 

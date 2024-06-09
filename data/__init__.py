@@ -1,7 +1,7 @@
 import pickle as save
 from datetime import datetime 
 
-data = datetime.now().strftime("%d/%m/%Y")
+data = datetime.now().strftime("%d/%m/%Y") # Pegar a data do dia
 
 def load_data(filename, default_value):
     """
